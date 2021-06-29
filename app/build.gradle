@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id "org.jlleitschuh.gradle.ktlint" version "10.1.0"
 }
 
 android {
@@ -30,6 +31,15 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    // ビルド時にLintCheckする
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach
+            {
+                dependsOn("ktlintCheck")
+                kotlinOptions {
+                    jvmTarget = '1.8'
+                }
+            }
 }
 
 dependencies {
