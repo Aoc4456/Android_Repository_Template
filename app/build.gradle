@@ -18,9 +18,23 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        debug {
+            storeFile file('keystore/debug/aoc_debug')
+            storePassword 'aoc.debug.0000'
+            keyAlias 'aocm.dev'
+            keyPassword 'aoc.debug.0000'
+        }
+    }
+
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+            applicationIdSuffix ".DEV"
+            debuggable true
+        }
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
