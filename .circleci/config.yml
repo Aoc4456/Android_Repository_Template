@@ -1,9 +1,8 @@
 version: 2.1
-executors:
-  android-executor:
-    working_directory: ~/code
+jobs:
+  build:
     docker:
-      - image: circleci/android:api-30
+      - image: circleci/android:api-30 # TargetSdkVersion と 同じにする
     steps:
       - checkout # プロジェクト ディレクトリ内のコードをチェック アウトします
       - run: echo "hello world" # `echo` コマンドを実行します
