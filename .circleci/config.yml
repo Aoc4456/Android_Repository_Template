@@ -1,7 +1,9 @@
-version: 2
-jobs:
-  build:
+version: 2.1
+executors:
+  android-executor:
+    working_directory: ~/code
     docker:
-      - image: circleci/node:4.8.2 steps:
-      - checkout
-      - run: echo "Hello World!"
+      - image: circleci/android:api-30
+    steps:
+      - checkout # プロジェクト ディレクトリ内のコードをチェック アウトします
+      - run: echo "hello world" # `echo` コマンドを実行します
