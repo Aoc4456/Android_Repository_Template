@@ -9,6 +9,7 @@ jobs:
       name: android/android-machine
     steps:
       - run:
+          name: "copy google services.json"
           command: echo $GOOGLE_SERVICE_JSON | base64 --decode --ignore-garbage > ./app/google-services.json
 
   unit-test:
@@ -16,7 +17,6 @@ jobs:
       name: android/android-machine
     steps:
       - checkout
-      - echo $GOOGLE_SERVICES | base64 -di > app/google-services.json
       - android/restore-gradle-cache
       - android/restore-build-cache
       - android/run-tests:
@@ -44,7 +44,6 @@ jobs:
       resource-class: xlarge
     steps:
       - checkout
-      - echo $GOOGLE_SERVICES | base64 -di > app/google-services.json
       - android/start-emulator-and-run-tests:
           test-command: ./gradlew connectedDebugAndroidTest
           system-image: << parameters.system-image >>
