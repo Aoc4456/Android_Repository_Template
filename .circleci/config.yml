@@ -9,7 +9,7 @@ commands:
       - checkout
       - run:
           name: Decode Google Services Json
-          command: echo $GOOGLE_SERVICE_JSON | base64 -d > app/google-services.json
+          command: echo $GOOGLE_SERVICES_JSON | base64 -d > app/google-services.json
           when: always
 
 jobs:
