@@ -8,12 +8,7 @@ jobs:
     executor:
       name: android/android-machine
     steps:
-      - run:
-          # Export base64 encoded google-services.json
-          # into local bash variables
-          name: Export Google Services Json
-          command: echo 'export GOOGLE_SERVICES_JSON="$GOOGLE_SERVICES_JSON"' >> $BASH_ENV
-          when: always
+      - checkout
       - run:
           # Decode the base64 string
           name: Decode Google Services Json
