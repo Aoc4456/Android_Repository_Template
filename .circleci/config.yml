@@ -77,7 +77,7 @@ jobs:
 workflows:
   test-and-build:
     jobs:
-      - unit-test:
+      - unit-test
       - android-test: # main以外のブランチにコミットされた場合、api30 のエミュレーターでのみテスト
           filters:
             branches:
