@@ -10,7 +10,7 @@ jobs:
     steps:
       - run:
           name: Copy google-services.json
-          command: echo $GOOGLE_SERVICES_JSON | base64 -di > app/google-services.json
+          command: echo $GOOGLE_SERVICES_JSON | base64 -di > RepositoryTemplate/app/google-services.json
 
   unit-test:
     executor:
