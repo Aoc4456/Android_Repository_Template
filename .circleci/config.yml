@@ -3,23 +3,21 @@ version: 2.1
 orbs:
   android: circleci/android@1.0.3
 
-jobs:
-  copy-google-service:
-    executor:
-      name: android/android-machine
+commands:
+  prepare:
     steps:
       - checkout
       - run:
-          # Decode the base64 string
           name: Decode Google Services Json
           command: echo $GOOGLE_SERVICES_JSON | base64 -di > app/google-services.json
           when: always
 
+jobs:
   unit-test:
     executor:
       name: android/android-machine
     steps:
-      - checkout
+      - prepare
       - android/restore-gradle-cache
       - android/restore-build-cache
       - android/run-tests:
@@ -46,7 +44,7 @@ jobs:
       name: android/android-machine
       resource-class: xlarge
     steps:
-      - checkout
+      - prepare
       - android/start-emulator-and-run-tests:
           test-command: ./gradlew connectedDebugAndroidTest
           system-image: << parameters.system-image >>
@@ -66,7 +64,7 @@ jobs:
       name: android/android-machine
       resource-class: xlarge
     steps:
-      - checkout
+      - prepare
       - android/restore-gradle-cache
       - android/restore-build-cache
       - run:
@@ -79,13 +77,8 @@ jobs:
 workflows:
   test-and-build:
     jobs:
-      - copy-google-service
       - unit-test:
-          requires:
-            - copy-google-service
       - android-test: # main以外のブランチにコミットされた場合、api30 のエミュレーターでのみテスト
-          requires:
-            - copy-google-service
           filters:
             branches:
               ignore: main # regular commits
