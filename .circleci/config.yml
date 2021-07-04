@@ -78,11 +78,11 @@ workflows:
     jobs:
       - copy-google-service
       - unit-test:
-          - requires:
-              - copy-google-service
+          requires:
+            - copy-google-service
       - android-test: # main以外のブランチにコミットされた場合、api30 のエミュレーターでのみテスト
-          - requires:
-              - copy-google-service
+          requires:
+            - copy-google-service
           filters:
             branches:
               ignore: main # regular commits
