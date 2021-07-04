@@ -5,6 +5,8 @@ orbs:
 
 jobs:
   copy-google-service:
+    executor:
+      name: android/android-machine
     steps:
       - run:
           command: echo $GOOGLE_SERVICE_JSON | base64 --decode --ignore-garbage > ./app/google-services.json
