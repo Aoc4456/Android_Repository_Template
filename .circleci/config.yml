@@ -4,6 +4,11 @@ orbs:
   android: circleci/android@1.0.3
 
 jobs:
+  copy-google-service:
+    steps:
+      - run:
+          command: echo $GOOGLE_SERVICE_JSON | base64 --decode --ignore-garbage > ./app/google-services.json
+
   unit-test:
     executor:
       name: android/android-machine
@@ -71,8 +76,13 @@ jobs:
 workflows:
   test-and-build:
     jobs:
-      - unit-test
+      - copy-google-service
+      - unit-test:
+          - requires:
+              - copy-google-service
       - android-test: # main以外のブランチにコミットされた場合、api30 のエミュレーターでのみテスト
+          - requires:
+              - copy-google-service
           filters:
             branches:
               ignore: main # regular commits
