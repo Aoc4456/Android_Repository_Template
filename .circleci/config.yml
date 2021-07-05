@@ -61,7 +61,7 @@ jobs:
 
   deploy_debug:
     executor:
-      android/android-machine
+      name: android/android-machine
     steps:
       - attach_workspace:
           at: .
@@ -92,7 +92,7 @@ workflows:
           filters:
             branches:
               ignore: main # regular commits
-      - android-test: # mainブランチにコミットされた場合、以下のエミュレーター全てでテスト
+      - android-test-all: # mainブランチにコミットされた場合、以下のエミュレーター全てでテスト
           matrix:
             alias: android-test-all
             parameters:
@@ -106,6 +106,9 @@ workflows:
             branches:
               only: main # Commits to main branch
       - deploy_debug: # mainブランチにコミットされた場合のみ、apkを作成
+          requires:
+            - unit-test
+            - android-test-all
           filters:
             branches:
               only: main # Commits to main branch
