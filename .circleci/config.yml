@@ -63,6 +63,7 @@ jobs:
     executor:
       name: android/android-machine
     steps:
+      - prepare
       - attach_workspace:
           at: .
       - run:
