@@ -59,7 +59,17 @@ jobs:
       - store_artifacts:
           path: ~/test-results/junit
 
-  release-build:
+  deploy_debug:
+    executor:
+      android/android-machine
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: appDistributionUploadDebug
+          command: ./gradlew appDistributionUploadDebug
+
+  release-build: # 今回は使わない
     executor:
       name: android/android-machine
       resource-class: xlarge
@@ -100,7 +110,7 @@ workflows:
             branches:
               only: main # Commits to main branch
 
-      - release-build: # mainブランチにコミットされた場合のみ、apkを作成
+      - deploy_debug: # mainブランチにコミットされた場合のみ、apkを作成
           requires:
             - unit-test
             - android-test-all
