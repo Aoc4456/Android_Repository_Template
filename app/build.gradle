@@ -50,7 +50,7 @@ android {
     // ビルド時にLintCheckする
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach
             {
-                dependsOn("ktlintFormat")
+                dependsOn("ktlintCheck")
                 kotlinOptions {
                     jvmTarget = '1.8'
                 }
