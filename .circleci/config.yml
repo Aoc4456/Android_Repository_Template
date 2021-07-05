@@ -107,8 +107,7 @@ workflows:
               only: main # Commits to main branch
       - deploy_debug: # mainブランチにコミットされた場合のみ、apkを作成
           requires:
-            - unit-test
-            - android-test
+            - unit-test # android-test-all を一旦外す
           filters:
             branches:
               only: main # Commits to main branch
