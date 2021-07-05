@@ -92,7 +92,7 @@ workflows:
           filters:
             branches:
               ignore: main # regular commits
-      - android-test-all: # mainブランチにコミットされた場合、以下のエミュレーター全てでテスト
+      - android-test: # mainブランチにコミットされた場合、以下のエミュレーター全てでテスト
           matrix:
             alias: android-test-all
             parameters:
@@ -108,7 +108,7 @@ workflows:
       - deploy_debug: # mainブランチにコミットされた場合のみ、apkを作成
           requires:
             - unit-test
-            - android-test-all
+            - android-test
           filters:
             branches:
               only: main # Commits to main branch
