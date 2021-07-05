@@ -59,7 +59,7 @@ jobs:
       - store_artifacts:
           path: ~/test-results/junit
 
-  deploy_debug:
+  deploy-debug:
     executor:
       name: android/android-machine
     steps:
@@ -87,4 +87,4 @@ jobs:
 workflows:
   test-and-build:
     jobs:
-      - deploy_debug: # mainブランチにコミットされた場合のみ、apkを作成
+      - deploy-debug
