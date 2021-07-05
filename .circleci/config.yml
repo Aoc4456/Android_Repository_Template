@@ -70,7 +70,7 @@ jobs:
           name: appDistributionUploadDebug
           command: |
             export FIREBASE_TOKEN=$FIREBASE_TOKEN
-            ./gradlew appDistributionUploadDebug
+            ./gradlew assembleDebug appDistributionUploadDebug
           when: always
 
   release-build: # 今回は使わない
