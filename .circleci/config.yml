@@ -91,12 +91,6 @@ jobs:
 workflows:
   test-and-build:
     jobs:
-      - deploy-debug: # mainブランチにコミットされた場合のみ、apkを作成
-          requires:
-            - unit-test # android-test-all を一旦外す
-          filters:
-            branches:
-              only: main # Commits to main branch
       - unit-test
       - android-test: # main以外のブランチにコミットされた場合、api30 のエミュレーターでのみテスト
           filters:
@@ -115,3 +109,4 @@ workflows:
           filters:
             branches:
               only: main # Commits to main branch
+      - deploy-debug # mainブランチにコミットされた場合のみ、apkを作成
