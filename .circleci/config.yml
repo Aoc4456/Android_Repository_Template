@@ -91,4 +91,27 @@ jobs:
 workflows:
   test-and-build:
     jobs:
-      - deploy-debug
+      - unit-test
+      - android-test: # main以外のブランチにコミットされた場合、api30 のエミュレーターでのみテスト
+          filters:
+            branches:
+              ignore: main # regular commits
+      - android-test: # mainブランチにコミットされた場合、以下のエミュレーター全てでテスト
+          matrix:
+            alias: android-test-all
+            parameters:
+              system-image:
+                - system-images;android-30;google_apis;x86
+                - system-images;android-29;google_apis;x86
+                - system-images;android-28;google_apis;x86
+                - system-images;android-27;google_apis;x86
+          name: android-test-<<matrix.system-image>>
+          filters:
+            branches:
+              only: main # Commits to main branch
+      - deploy_debug: # mainブランチにコミットされた場合のみ、apkを作成
+          requires:
+            - unit-test # android-test-all を一旦外す
+          filters:
+            branches:
+              only: main # Commits to main branch
