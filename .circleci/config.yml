@@ -92,10 +92,10 @@ workflows:
   test-and-build:
     jobs:
       - unit-test
-      - android-test: # main以外のブランチにコミットされた場合、api30 のエミュレーターでのみテスト
+      - android-test: # master以外のブランチにコミットされた場合、api30 のエミュレーターでのみテスト
           filters:
             branches:
-              ignore: main # regular commits
+              ignore: master # regular commits
       - android-test: # mainブランチにコミットされた場合、以下のエミュレーター全てでテスト
           matrix:
             alias: android-test-all
@@ -108,7 +108,11 @@ workflows:
           name: android-test-<<matrix.system-image>>
           filters:
             branches:
-              only: main # Commits to main branch
+              only: master # Commits to master branch
       - deploy-debug: # mainブランチにコミットされた場合のみ、apkを作成
           requires:
-            - unit-test # android-test-all を一旦外す
+            - unit-test
+            - android-test-all
+          filters:
+            branches:
+              only: master # Commits to main branch
