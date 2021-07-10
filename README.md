@@ -58,8 +58,8 @@ https://peaks.cc/books/architecture_with_team
 - 仮のアイコンが設定済み
 
 ## ルール
-以下のコーディング規約に従う
-命名については、 Kotlin スタイルガイドに従う
+以下のコーディング規約に従う  
+(命名については、Kotlin スタイルガイドに従う)
 - Android Developer Kotlin スタイルガイド   
 https://developer.android.com/kotlin/style-guide?hl=ja  
 
