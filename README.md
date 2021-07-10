@@ -59,6 +59,7 @@ https://peaks.cc/books/architecture_with_team
 
 ## ルール
 以下のコーディング規約に従う
+命名については、 Kotlin スタイルガイドに従う
 - Android Developer Kotlin スタイルガイド   
 https://developer.android.com/kotlin/style-guide?hl=ja  
 
