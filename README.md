@@ -52,10 +52,10 @@ https://peaks.cc/books/architecture_with_team
 - Timber (ログ出力)
 
 ### その他
-- gitIgnore が配置済み
-- debug.keystore が配置済み
-- buildTypes : debug は applicationId、labelの末尾に.debug がつく
-- 仮のアイコンが設定済み
+- gitIgnore
+- debug用のKeystore
+- applicationIdSuffix 
+- 仮のアイコン
 
 ## ルール
 以下のコーディング規約に従う  
