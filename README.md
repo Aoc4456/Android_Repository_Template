@@ -52,8 +52,8 @@ https://peaks.cc/books/architecture_with_team
 - Timber (ログ出力)
 
 ### その他
-- gitIgnore
-- debug用のKeystore
+- .gitIgnore
+- debug用のsigningConfigs
 - applicationIdSuffix 
 - 仮のアイコン
 
